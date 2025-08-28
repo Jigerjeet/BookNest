@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Library</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background: #eaf2f8;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+
+    li:hover {
+      transform: scale(1.02);
+    }
+
+    .empty {
+      text-align: center;
+      font-style: italic;
+      color: #888;
+    }
+
+    .add-link {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+      text-decoration: none;
+      background: #3498db;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .add-link:hover {
+      background: #2980b9;
+    }
+
+    .book-title {
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    .book-author {
+      font-style: italic;
+      color: #7f8c8d;
+    }
+
+    .book-rating {
+      float: right;
+      color: #27ae60;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📚 My Library</h1>
+
+    {% if books %}
+      <ul>
+        {% for book in books %}
+          <li>
+            <span class="book-title">{{ book.title }}</span><br>
+            <span class="book-author">by {{ book.author }}</span>
+            <span class="book-rating">{{ book.rating }}/10</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty">Library is empty.</p>
+    {% endif %}
+
+    <a class="add-link" href="{{ url_for('add') }}">➕ Add New Book</a>
+  </div>
+</body>
+</html>
